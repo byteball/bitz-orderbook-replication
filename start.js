@@ -25,7 +25,7 @@ function getDestOrderByHash(hash) {
 
 async function cancelAllTrackedDestOrdersBeforeExiting() {
 	console.log("will cancel all tracked dest orders before exiting");
-//	if (bExiting)
+	if (bExiting)
 		return;
 	bExiting = true;
 	await cancelAllTrackedDestOrders();
