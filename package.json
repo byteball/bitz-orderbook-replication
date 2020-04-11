@@ -1,0 +1,14 @@
+{
+	"name": "bitz-orderbook-replication",
+	"version": "1.0.0",
+	"description": "Bit-Z order book replication bot",
+	"main": "start.js",
+	"repository": "https://github.com/byteball/bitz-orderbook-replication.git",
+	"author": "tony",
+	"license": "MIT",
+	"dependencies": {
+		"ccxt": "^1.25.80",
+		"ccxws": ">=0.31.0",
+		"dotenv": "^8.2.0"
+	}
+}
