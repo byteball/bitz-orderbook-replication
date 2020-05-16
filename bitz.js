@@ -251,13 +251,18 @@ async function getFilledAmountByPrices(prices) {
 async function getFilledAmount(order_ids) {
 	let amount = 0;
 	for (let order_id of order_ids) {
-		let order = await getOrderInfo(order_id);
-		console.log('--- affected order', order);
-		console.log('order', order_id, order.side, order.price, getHashByOrderId(order_id), 'filled', order.filled);
-		if (order.side === 'buy')
-			amount += order.filled;
+		let dest_order = await getOrderInfo(order_id);
+		console.log('--- affected order', dest_order);
+		console.log('order', order_id, dest_order.side, dest_order.price, getHashByOrderId(order_id), 'filled', dest_order.filled);
+		let order = assocOrders[order_id];
+		console.log('our order', order);
+		let already_filled = (order && order.filled) ? order.filled : 0;
+		if (dest_order.side === 'buy')
+			amount += dest_order.filled - already_filled;
 		else
-			amount -= order.filled;
+			amount -= dest_order.filled - already_filled;
+		if (order)
+			order.filled = dest_order.filled;
 	}
 	return amount;
 }
