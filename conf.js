@@ -5,7 +5,7 @@ require('dotenv').config({ path: path.dirname(process.mainModule.paths[0]) + '/.
 
 
 // websocket URL of Bit-Z node we are are connecting to
-exports.bitz_ws_url = 'wss://wsapi.bitz.top';
+exports.bitz_ws_url = 'wss://wsapi.bitz.so';
 
 // source exchange authentication
 exports.sourceApiKey = process.env.sourceApiKey;
