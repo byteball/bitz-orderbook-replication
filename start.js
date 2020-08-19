@@ -286,7 +286,7 @@ function startBittrexWs() {
 	const bittrexWS = new ccxws.bittrex();
 	// market could be from CCXT or genearted by the user
 	const market = {
-		id: "BTC-GBYTE", // remote_id used by the exchange
+		id: "GBYTE-BTC", // remote_id used by the exchange
 		base: "GBYTE", // standardized base symbol for Bitcoin
 		quote: "BTC", // standardized quote symbol for Tether
 	};
