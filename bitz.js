@@ -234,7 +234,7 @@ function getOrderIdsByPrices(prices) {
 	let order_ids = [];
 	for (let id in assocOrders) {
 		let order = assocOrders[id];
-		if (prices.find(price => Math.abs(price - order.price) < 1e-8 || order.side === 'SELL' && order.price < price || order.side === 'BUY' && order.price > price))
+		if (prices.find(price => Math.abs(price - order.price) <= 1e-8 || order.side === 'SELL' && order.price <= price || order.side === 'BUY' && order.price >= price))
 			order_ids.push(id);
 	}
 	console.log('--- affected orders', order_ids);
@@ -257,10 +257,12 @@ async function getFilledAmount(order_ids) {
 		let order = assocOrders[order_id];
 		console.log('our order', order);
 		let already_filled = (order && order.filled) ? order.filled : 0;
+		let newly_filled = dest_order.filled - already_filled;
+		console.log(' === newly filled', newly_filled, '\n')
 		if (dest_order.side === 'buy')
-			amount += dest_order.filled - already_filled;
+			amount += newly_filled;
 		else
-			amount -= dest_order.filled - already_filled;
+			amount -= newly_filled;
 		if (order)
 			order.filled = dest_order.filled;
 	}
